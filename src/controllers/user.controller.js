@@ -188,15 +188,14 @@ const logoutUser=asyncHandler(async(req,res) =>{
     const logOut= await User.findByIdAndUpdate(
          req.user._id,
          {
-            $set:{
-               refreshToken:undefined
+            $unset:{
+               refreshToken:1
             }
          },
          {
             new:true
          }
      )
-     console.log(logOut)
 
      const options={
       httpOnly:true,
